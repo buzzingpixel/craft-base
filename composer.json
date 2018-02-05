@@ -1,0 +1,26 @@
+{
+    "name": "buzzingpixel/craftbase",
+    "description": "Craft Base",
+    "license": "proprietary",
+    "homepage": "http://craftbase.com/",
+    "type": "project",
+    "require": {
+        "php": ">=7.0.0",
+        "craftcms/cms": "^3.0.0-RC1",
+        "vlucas/phpdotenv": "^2.4.0",
+        "roave/security-advisories": "dev-master",
+        "nystudio107/craft-minify": "^1.2",
+        "buzzingpixel/craft-static": "^1.0.2",
+        "nystudio107/craft-typogrify": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "dev\\": "dev/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.0"
+        }
+    }
+}
