@@ -2,6 +2,7 @@
 
 namespace dev\twigextensions;
 
+use dev\services\ConfigService;
 use dev\services\FileOperationsService;
 
 /**
@@ -9,7 +10,7 @@ use dev\services\FileOperationsService;
  *
  * @package dev\twigextensions
  */
-class GetEnvTwigExtension extends \Twig_Extension
+class DevTwigExtensions extends \Twig_Extension
 {
     /**
      * Returns the twig functions
@@ -24,6 +25,10 @@ class GetEnvTwigExtension extends \Twig_Extension
             new \Twig_Function('fileTime', [
                 new FileOperationsService(),
                 'getFileTime'
+            ]),
+            new \Twig_Function('customConfig', [
+                new ConfigService(),
+                'getCustomConfig'
             ]),
         ];
     }
