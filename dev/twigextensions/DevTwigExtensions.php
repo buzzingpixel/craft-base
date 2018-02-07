@@ -2,7 +2,9 @@
 
 namespace dev\twigextensions;
 
+use craft\helpers\Template;
 use dev\services\ConfigService;
+use dev\services\TypesetService;
 use dev\services\FileOperationsService;
 
 /**
@@ -12,6 +14,19 @@ use dev\services\FileOperationsService;
  */
 class DevTwigExtensions extends \Twig_Extension
 {
+    /**
+     * Returns the twig filters
+     * @return \Twig_Filter[]
+     */
+    public function getFilters() : array
+    {
+        return [
+            new \Twig_Filter('typeset', [$this, 'typesetFilter']),
+            new \Twig_Filter('smartypants', [$this, 'smartypantsFilter']),
+            new \Twig_Filter('widont', [$this, 'widontFilter']),
+        ];
+    }
+
     /**
      * Returns the twig functions
      * @return \Twig_Function[]
@@ -31,5 +46,32 @@ class DevTwigExtensions extends \Twig_Extension
                 'getCustomConfig'
             ]),
         ];
+    }
+
+    /**
+     * @param string $str
+     * @return \Twig_Markup
+     */
+    public function typesetFilter(string $str) : \Twig_Markup
+    {
+        return Template::raw((new TypesetService())->typeset($str));
+    }
+
+    /**
+     * @param string $str
+     * @return \Twig_Markup
+     */
+    public function smartypantsFilter(string $str) : \Twig_Markup
+    {
+        return Template::raw((new TypesetService())->smartypants($str));
+    }
+
+    /**
+     * @param string $str
+     * @return \Twig_Markup
+     */
+    public function widontFilter(string $str) : \Twig_Markup
+    {
+        return Template::raw((new TypesetService())->widont($str));
     }
 }
